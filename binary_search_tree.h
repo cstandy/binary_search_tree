@@ -27,6 +27,9 @@ public:
 
 private:
     int key;
+    BST* left_child;
+    BST* right_child;
+    BST* parent;
 };
 
 #endif /* BINARY_SEARCH_TREE_H */
