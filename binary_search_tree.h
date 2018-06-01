@@ -7,12 +7,13 @@ using namespace std;
 class BST
 {
 public:
-    /* create binary tree randomly */
-    BST(int);
-    /* read the input file name */
-    BST(char*[]);
-    BST(string);
+    /* create empty binary tree */
+    BST(void);
     ~BST();
+
+    /* basic tree operations */
+    void insert(int);
+    void remove(void);
 
     /* traversal method */
     void print_graph(void);
