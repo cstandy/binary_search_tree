@@ -1,5 +1,5 @@
 # ignore the config file of Visual Studio Code
-./vscode
+.vscode/
 
 # ignore the runnable file
 *.exe
