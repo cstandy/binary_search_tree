@@ -3,3 +3,7 @@
 
 # ignore the runnable file
 *.exe
+*.out
+
+# ignore the object file
+*.o

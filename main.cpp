@@ -39,7 +39,7 @@ int main()
 
 		input_file >> input_data;
 		printf("\r\n");
-		printf("input data					 : %d", input_data);
+		printf("input data                   : %d", input_data);
 
 		BST tree(input_data);
 
@@ -48,11 +48,7 @@ int main()
 			tree.insert(input_data);
 			printf(" %d", input_data);
 		}
-			
-		printf("\r\ntree depth: %d", tree.depth());
 
-		printf("\r\ngraph:\r\n");
-		tree.print_graph();
 
 		printf("\r\n\r\n");
 		printf("inorder   (left->root->right):");
@@ -64,7 +60,7 @@ int main()
 		printf("postorder (left->right->root):");
 		tree.print_postorder();
 		printf("\r\n\r\n");
-		printf("breadth-first search		 :");
+		printf("breadth-first search         :");
 		tree.print_breadth_first();
 	}
 	else if (select == 2)
@@ -79,7 +75,7 @@ int main()
 		srand(time(0));
 		input_data = rand() % 99 + 1;
 		printf("\r\n");
-		printf("input data					 : %d", input_data);
+		printf("input data                   : %d", input_data);
 
 		BST tree(input_data);
 
@@ -89,11 +85,6 @@ int main()
 			tree.insert(input_data);
 			printf(" %d", input_data);
 		}
-
-		printf("\r\ntree depth: %d", tree.depth());
-
-		printf("\r\ngraph:\r\n");
-		tree.print_graph();
 
 		printf("\r\n\r\n");
 		printf("inorder   (left->root->right):");
@@ -105,12 +96,11 @@ int main()
 		printf("postorder (left->right->root):");
 		tree.print_postorder();
 		printf("\r\n\r\n");
-		printf("breadth-first search		 :");
+		printf("breadth-first search         :");
 		tree.print_breadth_first();
 	}
 
 	printf("\r\n");
 
-	system("pause");
 	return 0;
 }
