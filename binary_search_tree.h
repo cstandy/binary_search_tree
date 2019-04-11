@@ -29,15 +29,8 @@ public:
 	void print_postorder(void);
 	void print_breadth_first(void);
 
-	/*
-	 * BST* tree-search (BST*, int)
-	 * BST* max (BST*)
-	 * BST* min (BST*)
-	 * BST* successor(BST*)
-	 * BST* predecessor(BST*)
-	 * void insert(T, BST*)
-	 * void delete(T, BST*)
-	 */
+	/**************************** get function ************8*******************/
+	int getKey(void) {return key;}
 
 private:
 	/* variable for single node */

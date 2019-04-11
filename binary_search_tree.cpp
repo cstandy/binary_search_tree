@@ -24,10 +24,8 @@ BST::~BST(void)
 
 /*
  * Insert a node in binary search tree.
- * Recursive search the tree to add the key as leaf.
- * If the key has existed, do nothing.
- *
- * key_in: the key to be inserted
+ * Recursive search the tree to add the node as leaf.
+ * If the key has existed, free the space of inserting node.
  * 
  */
 void BST::insert(BST* node_in)
@@ -58,9 +56,7 @@ void BST::insert(BST* node_in)
     // ignore the repeated key and free the memory space
 }
 
-/*
- * Recursively search the tree with a key.
- */
+/* Recursively search the tree with a key. */
 BST* BST::search(int key_search)
 {
     if (key == key_search)
@@ -69,6 +65,28 @@ BST* BST::search(int key_search)
         return right_child->search(key_search);
     else
         return left_child->search(key_search);
+}
+
+/* Search for the maximum node in the tree (must be leaf) */
+BST* BST::max(void)
+{
+    BST* maximum = this;
+
+    while (maximum->right_child != NULL)
+        maximum = maximum->right_child;
+
+    return maximum;
+}
+
+/* Search for the miniimum node in the tree (must be leaf) */
+BST* BST::min(void)
+{
+    BST* miniimum = this;
+
+    while (miniimum->left_child != NULL)
+        miniimum = miniimum->left_child;
+
+    return miniimum;
 }
 
 /* print the tree in-order with recursive */
