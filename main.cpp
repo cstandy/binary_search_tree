@@ -45,10 +45,9 @@ int main()
 
 		while (input_file >> input_data)
 		{
-			tree.insert(input_data);
+			tree.insert(new BST(input_data));
 			printf(" %d", input_data);
 		}
-
 
 		printf("\r\n\r\n");
 		printf("inorder   (left->root->right):");
@@ -71,7 +70,6 @@ int main()
 		printf("please enter the node number: ");
 		cin >> select;
 
-
 		srand(time(0));
 		input_data = rand() % 99 + 1;
 		printf("\r\n");
@@ -82,7 +80,7 @@ int main()
 		for (int i = 1; i < select; i++)
 		{
 			input_data = rand() % 99 + 1;
-			tree.insert(input_data);
+			tree.insert(new BST(input_data));
 			printf(" %d", input_data);
 		}
 

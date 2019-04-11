@@ -1,5 +1,5 @@
 CC:=g++
-exe:=run
+exe:=run.out
 obj:=main.o binary_search_tree.o
 
 all: $(obj)

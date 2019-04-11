@@ -7,6 +7,7 @@ using namespace std;
 BST::BST(int key_in)
 {
     key         = key_in;
+    parent      = NULL;
     left_child  = NULL;
     right_child = NULL;
 }
@@ -29,51 +30,45 @@ BST::~BST(void)
  * key_in: the key to be inserted
  * 
  */
-void BST::insert(int key_in)
+void BST::insert(BST* node_in)
 {
-    if (key < key_in)
+    if (key < node_in->key)
     {
         if (right_child != NULL)
-            right_child->insert(key_in);
-        else
-            right_child = new BST(key_in);
+            right_child->insert(node_in);
+        else {
+            this->right_child = node_in;
+            node_in->parent = this;
+        }
+            
     }
-    else if (key > key_in)
+    else if (key > node_in->key)
     {
         if (left_child != NULL)
-            left_child->insert(key_in);
-        else
-            left_child = new BST(key_in);
+            left_child->insert(node_in);
+        else {
+            this->left_child = node_in;
+            node_in->parent = this;
+        }
     }
-    else if (key == key_in){}
+    else if (key == node_in->key) 
+    {
+        delete node_in;
+    }
+    // ignore the repeated key and free the memory space
 }
 
 /*
  * Recursively search the tree with a key.
- * If the key exists, return true;
- * if the key does not exist, return false.
- *
  */
-bool BST::search(int key_search)
+BST* BST::search(int key_search)
 {
     if (key == key_search)
-    {
-        return true;
-    }
+        return this;
     else if (key < key_search)
-    {
-        if (right_child != NULL)
-        if (right_child->search(key_search))
-            return true;
-    }
-    else if (key > key_search)
-    {
-        if (left_child != NULL)
-        if (left_child->search(key_search))
-            return true;
-    }
-
-    return false;
+        return right_child->search(key_search);
+    else
+        return left_child->search(key_search);
 }
 
 /* print the tree in-order with recursive */
