@@ -26,7 +26,6 @@ BST::~BST(void)
  * Insert a node in binary search tree.
  * Recursive search the tree to add the node as leaf.
  * If the key has existed, free the space of inserting node.
- * 
  */
 void BST::insert(BST* node_in)
 {
@@ -56,6 +55,12 @@ void BST::insert(BST* node_in)
     // ignore the repeated key and free the memory space
 }
 
+/* Delete the node based on its pointer */
+void BST::erase(BST*)
+{
+
+}
+
 /* Recursively search the tree with a key. */
 BST* BST::search(int key_search)
 {
@@ -78,15 +83,66 @@ BST* BST::max(void)
     return maximum;
 }
 
-/* Search for the miniimum node in the tree (must be leaf) */
+/* Search for the minimum node in the tree (must be leaf) */
 BST* BST::min(void)
 {
-    BST* miniimum = this;
+    BST* minimum = this;
 
-    while (miniimum->left_child != NULL)
-        miniimum = miniimum->left_child;
+    while (minimum->left_child != NULL)
+        minimum = minimum->left_child;
 
-    return miniimum;
+    return minimum;
+}
+
+/* Search for the successor node in the tree */
+BST* BST::successor(void)
+{
+    // 1st case: the leftmost node of right subtree
+    if (this->right_child != NULL)
+        return this->min();
+    
+    // 2nd case: the go up to the parent
+    // Note: return NULL while this is the largest node in tree
+    BST* y = this->parent;
+    BST* x = this;
+    
+    while(y != NULL)
+    {
+        if (x == y->right_child)
+        {
+            x = y;
+            y = y->parent;
+        }
+        else
+            break;
+    }
+
+    return y;
+}
+
+BST* BST::predecessor(void)
+{
+    // 1st case: the rightmost node of left subtree
+    if (this->left_child != NULL)
+        return this->max();
+    
+    // 2nd case: the go up to the parent
+    // Note: return NULL while this is the largest node in tree
+    BST* y = this->parent;
+    BST* x = this;
+    
+    while(y != NULL)
+    {
+        if (x == y->left_child)
+        {
+            x = y;
+            y = y->parent;
+        }
+        else
+            break;
+    }
+
+    return y;
 }
 
 /* print the tree in-order with recursive */

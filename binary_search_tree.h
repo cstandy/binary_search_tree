@@ -29,17 +29,17 @@ public:
 	void print_postorder(void);
 	void print_breadth_first(void);
 
-	/**************************** get function ************8*******************/
+	/**************************** get function ********************************/
 	int getKey(void) {return key;}
 
 private:
-	/* variable for single node */
+	/********************* variable for single node ***************************/
 	int key;
 	BST* parent;
 	BST* left_child;
 	BST* right_child;
 	
-	/* containers for recursive search in breadth-first method
+	/* Containers for recursive search in breadth-first method
 	 * 
 	 * queue<BST*> next_node	   : queue for next node pointer
 	 * queue<int> BF_search_output : queue for the output-ordered key
