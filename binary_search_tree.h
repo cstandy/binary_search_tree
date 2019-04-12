@@ -16,7 +16,7 @@ public:
 
 	/*********************** basic tree operations ****************************/
 	void insert(BST*);
-	void erase(BST*); // delete nodes
+	void erase(void); // delete current nodes but preserve subtrees
 	BST* search(int);
 	BST* max(void);
 	BST* min(void);
@@ -30,7 +30,16 @@ public:
 	void print_breadth_first(void);
 
 	/**************************** get function ********************************/
-	int getKey(void) {return key;}
+	int getKey(void)         {return key;}
+	BST* getLeftChild(void)  {return left_child;}
+	BST* getRightChild(void) {return right_child;}
+	BST* getParent(void)     {return parent;}
+
+	/**************************** set function ********************************/
+	void setKey(int new_key)            {key         = new_key;}
+	void setLeftChild(BST* new_left)    {left_child  = new_left;}
+	void setRightChild(BST* new_right)  {right_child = new_right;}
+	void setParent(BST* new_parent)     {parent      = new_parent;}
 
 private:
 	/********************* variable for single node ***************************/

@@ -35,20 +35,20 @@ void BST::insert(BST* node_in)
             right_child->insert(node_in);
         else {
             this->right_child = node_in;
-            node_in->parent = this;
+            node_in->setParent(this);
         }
             
     }
-    else if (key > node_in->key)
+    else if (key > node_in->getKey())
     {
         if (left_child != NULL)
             left_child->insert(node_in);
         else {
             this->left_child = node_in;
-            node_in->parent = this;
+            node_in->setParent(this);
         }
     }
-    else if (key == node_in->key) 
+    else if (key == node_in->getKey())
     {
         delete node_in;
     }
@@ -56,9 +56,37 @@ void BST::insert(BST* node_in)
 }
 
 /* Delete the node based on its pointer */
-void BST::erase(BST*)
+void BST::erase(void)
 {
+    BST *replace, *subtree;
 
+    // if the deleted node has more than 2 subtrees, deleting will need to
+    // replace the successsor to deleted node
+    if (this->left_child == NULL || this->left_child == NULL)
+        replace = this;
+    else 
+        replace = this->successor();
+
+    // check if the node want to replace the deleted node has child
+    if (replace->getLeftChild() != NULL)
+        subtree = replace->getLeftChild();
+    else 
+        subtree = replace->getRightChild();
+
+    // reconnect the subtree to the parent
+    if (subtree != NULL)
+        subtree->setParent(replace->getParent());
+
+    // reconnect the parent to the subtree
+    if (replace->getParent() == NULL) {}
+    else if (replace == replace->getParent()->getLeftChild())
+        replace->getParent()->setLeftChild(subtree);
+    else
+        replace->getParent()->setRightChild(subtree);
+    
+    // replace the successor to current node
+    if (replace != this)
+        this->setKey(replace->getKey());
 }
 
 /* Recursively search the tree with a key. */
@@ -67,9 +95,11 @@ BST* BST::search(int key_search)
     if (key == key_search)
         return this;
     else if (key < key_search)
-        return right_child->search(key_search);
+    {
+        return (right_child == NULL)? NULL : right_child->search(key_search);
+    }
     else
-        return left_child->search(key_search);
+        return (left_child == NULL)? NULL : left_child->search(key_search);
 }
 
 /* Search for the maximum node in the tree (must be leaf) */
@@ -99,7 +129,7 @@ BST* BST::successor(void)
 {
     // 1st case: the leftmost node of right subtree
     if (this->right_child != NULL)
-        return this->min();
+        return this->right_child->min();
     
     // 2nd case: the go up to the parent
     // Note: return NULL while this is the largest node in tree
@@ -124,7 +154,7 @@ BST* BST::predecessor(void)
 {
     // 1st case: the rightmost node of left subtree
     if (this->left_child != NULL)
-        return this->max();
+        return this->left_child->max();
     
     // 2nd case: the go up to the parent
     // Note: return NULL while this is the largest node in tree

@@ -22,7 +22,9 @@ using namespace std;
 int main()
 {
 	int input_data = 0;
-	int select = 0;
+	int select     = 0;
+	int key        = 0;
+	BST *temp;
 
 	printf("\r\n 2 approaches to construct a binary search tree:");
 	printf("\r\n\t1) Read input data");
@@ -65,16 +67,88 @@ int main()
 		printf(" . Breadth-first tree-walk:");
 		tree.print_breadth_first();
 		printf("\r\n\r\n");
-		printf(" . Maximum key value: %d", tree.max()->getKey());
+		printf(" . Maximum key value      : %d", tree.max()->getKey());
 		printf("\r\n\r\n");
-		printf(" . Minimum key value: %d", tree.min()->getKey());
+		printf(" . Minimum key value      : %d", tree.min()->getKey());
+
+		// test the successsor
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Find the successor of a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp == NULL)
+			printf("\r\n ! Error: Not found.");
+		else 
+		{
+			if (temp->successor() == NULL)	
+				printf("\r\n ! %d is the largest node.", key);
+			else
+			{
+				printf("\r\n");
+				printf("    . The successor of %d: %d", 
+						key, temp->successor()->getKey());
+			}
+		}
+
+		// test the predecessor
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Find the predecessor of a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp == NULL)
+			printf("\r\n ! Error: Not found.");
+		else 
+		{
+			if (temp->predecessor() == NULL)	
+				printf("\r\n ! %d is the smallest node.", key);
+			else
+			{
+				printf("\r\n");
+				printf("    . The predecessor of %d: %d", 
+						key, temp->predecessor()->getKey());
+			}
+		}
+
+		// demo the insertion
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Insert a node: ");
+		cin >> key;
+		temp = new BST(key);
+		tree.insert(temp);
+		printf("\r\n");
+		printf(" . Inorder tree-walk      :");
+		tree.print_inorder();
+
+		// test the deletion
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Delete a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp != NULL)
+		{
+			temp->erase();
+			printf("\r\n");
+			printf(" . Inorder tree-walk      :");
+			tree.print_inorder();
+		}
+		else
+			printf("\r\n Error: Not found.");
+		
 	}
 	else if (select == 2)
 	{
 		// may use different way to generate random numbers
 
 
-		printf("Please enter the node number: ");
+		printf("\r\n  Please enter the node number: ");
 		cin >> select;
 
 		srand(time(0));
@@ -107,9 +181,80 @@ int main()
 		printf(" . Maximum key value: %d", tree.max()->getKey());
 		printf("\r\n\r\n");
 		printf(" . Minimum key value: %d", tree.min()->getKey());
+
+		// test the successsor
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Find the successor of a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp == NULL)
+			printf("\r\n ! Error: Not found.");
+		else 
+		{
+			if (temp->successor() == NULL)	
+				printf("\r\n ! %d is the largest node.", key);
+			else
+			{
+				printf("\r\n");
+				printf("    . The successor of %d: %d", 
+						key, temp->successor()->getKey());
+			}
+		}
+
+		// test the predecessor
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Find the predecessor of a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp == NULL)
+			printf("\r\n ! Error: Not found.");
+		else 
+		{
+			if (temp->predecessor() == NULL)	
+				printf("\r\n ! %d is the smallest node.", key);
+			else
+			{
+				printf("\r\n");
+				printf("    . The predecessor of %d: %d", 
+						key, temp->predecessor()->getKey());
+			}
+		}
+
+		// demo the insertion
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Insert a node: ");
+		cin >> key;
+		temp = new BST(key);
+		tree.insert(temp);
+		printf("\r\n");
+		printf(" . Inorder tree-walk      :");
+		tree.print_inorder();
+
+		// test the deletion
+		printf("\r\n\r\n");
+		printf("=============================================================");
+		printf("\r\n\r\n");
+		printf(" . Delete a node: ");
+		cin >> key;
+		temp = tree.search(key);
+		if (temp != NULL)
+		{
+			temp->erase();
+			printf("\r\n");
+			printf(" . Inorder tree-walk      :");
+			tree.print_inorder();
+		}
+		else
+			printf("\r\n Error: Not found.");
 	}
 
-	printf("\r\n");
+	printf("\r\n\r\n");
 
 	return 0;
 }
